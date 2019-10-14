@@ -1,0 +1,165 @@
+h2 {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	text-align: center;
+	padding-right: 0;
+	display: table-cell;
+	vertical-align: middle;
+	border-top: 2px solid #CADADD;
+	border-right: 2px solid #CADADD;
+}
+
+button {
+	background-color: white;
+	color: #CADADD;
+	border: 2px solid #6BB099;
+	padding: 10px 20px;
+	border-radius: 16px;
+	text-align: center;
+	display: inline-block;
+	font-size: 18px;
+	margin: 6px 3px;
+	width: auto;
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: white;
+	color: #6BB099;
+}
+
+button.first {
+	background-color: white;
+	border: 2px solid #6BB099;
+	color: #6BB099;
+}
+
+.first:hover {
+	background-color: #6BB099;
+	color: white;
+}
+
+button.second {
+	background-color: white;
+	border: 2px solid #6BB099;
+	color: #6BB099;
+	float: right;
+}
+
+.second:hover {
+	background-color: #6BB099;
+	color: white;
+}
+
+div.one {
+	display: table;
+	text-align: right;
+	width: 1260px;
+	border-bottom: 2px solid #CADADD;
+}
+
+div.two {
+	width: 1200px;
+	text-align: center;
+}
+
+div.three {
+	width: 1200px;
+	margin: 30px;
+}
+
+table, th, td {
+	margin: 30px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 1200px;
+}
+
+th {
+	height: 80px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	width: 9%;
+}
+
+td {
+	height: 50px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	text-align: left;
+	width: 7%;
+}
+
+tr:nth-child(even) {
+	background-color: #CADADD;
+}
+
+
+
+form {
+  border: 2px solid #6BB099;
+  background-color: white;
+  padding: 100px;
+  margin: 200px;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #6BB099;
+  box-sizing: border-box;
+}
+
+button.submit {
+	background-color: #6BB099;
+	color: white;
+	border: none;
+	border-radius: 0;
+	text-align: center;
+	display: inline-block;
+	font-size: 18px;
+	padding: 12px 20px;
+	margin: 10px 0;
+	width: 100%;
+	cursor: pointer;
+}
+
+div.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	padding-top: 60px;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+}
+
+div.modal-content {
+	background-color: #fefefe;
+	margin: 5% auto 15% auto;
+	border: 1px solid #888;
+	width: 80%;
+}
+
+.close {
+	position: absolute;
+	right: 25px;
+	top: 0;
+	top: 0;
+	color: #000;
+	font-size: 35px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  cursor: pointer;
+}

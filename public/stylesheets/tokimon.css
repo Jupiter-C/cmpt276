@@ -1,0 +1,46 @@
+body {
+	/*background-color: black;*/
+}
+
+h2 {
+	color: #857F81;
+	font-family: Arial, sans-serif;
+}
+
+p {
+	color: black;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+button {
+	background-color: #6BB099;
+	border: none;
+	color: white;
+	padding: 15px 30px;
+	border-radius: 8px;
+	text-align: center;
+	display: inline-block;
+	font-size: 2vw;
+	margin: 6px 3px;
+	width: 20%;
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: white;
+	color: #6BB099;
+}
+
+div.one {
+	text-align: center;
+}
+
+div.transbox {
+	margin: 25px 80px;
+	padding: 15px 30px;
+	/*background-color: #ffffff;*/
+	border: 1px solid #CADADD;
+	/*opacity: 0.6;*/
+}

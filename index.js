@@ -4,6 +4,8 @@ const pool = new Pool({
   ssl: true
 });
 
+pool.connect();
+
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
@@ -15,7 +17,20 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => {res.render('pages/index')})
+  .get('/db', async (req, res) => {
+    try {
+      const client = await pool.connect()
+      const result = await client.query('SELECT * FROM test_table');
+      const results = { 'results': (result) ? result.rows : null};
+      res.render('pages/db', results );
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  })
   .post('/create', (req, res) => {
+    var id = req.body.id;
     var name = req.body.name;
     var weight = req.body.weight;
     var height = req.body.height;
@@ -26,10 +41,9 @@ express()
     var electric = req.body.electric;
     var frozen = req.body.frozen;
     var total = req.body.total;
-    var trainnername = req.body.trainnername;
-    pool.connect();
+    var trainer = req.body.trainer;
 
-    var  insertUsersQuery = `INSERT INTO tokimon VALUES ('${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainnername}');`
+    var  insertUsersQuery = `INSERT INTO tokimon VALUES (${id},'${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainer}');`
     console.log(insertUsersQuery);
     pool.query(insertUserQuery, (error,result) => {
       if (error)
@@ -40,5 +54,7 @@ express()
       pool.end();
     });
   })
+
+
 
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))

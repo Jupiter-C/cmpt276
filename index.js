@@ -45,7 +45,7 @@ express()
 
     var insertUsersQuery = `INSERT INTO tokimon VALUES (${id},'${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainer}')`;
     console.log(insertUsersQuery);
-    pool.query(insertUserQuery, (error,result) => {
+    pool.query(insertUsersQuery, (error,result) => {
       if (error)
         throw error;
       // for (let row of res.rows) {

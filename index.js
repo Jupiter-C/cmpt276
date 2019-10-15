@@ -43,7 +43,7 @@ express()
     var total = req.body.total;
     var trainer = req.body.trainer;
 
-    var  insertUsersQuery = `INSERT INTO tokimon VALUES (${id},'${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainer}');`
+    var insertUsersQuery = `INSERT INTO tokimon VALUES (${id},'${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainer}')`;
     console.log(insertUsersQuery);
     pool.query(insertUserQuery, (error,result) => {
       if (error)

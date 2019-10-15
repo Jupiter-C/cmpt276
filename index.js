@@ -34,10 +34,10 @@ express()
     pool.query(insertUserQuery, (error,result) => {
       if (error)
         throw error;
-      for (let row of res.rows) {
-        console.log(JSON.stringify(row));
-      }
-      client.end();
+      // for (let row of res.rows) {
+      //   console.log(JSON.stringify(row));
+      // });
+      pool.end();
     });
   })
 

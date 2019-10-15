@@ -4,17 +4,17 @@ const pool = new Pool({
   ssl: true
 });
 
-const cool = require('cool-ascii-faces')
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
+  .use(express.json())
+  .use(express.urlencoded({ extended: false }))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => {res.render('pages/index')})
-
   .post('/create', (req, res) => {
     var name = req.body.name;
     var weight = req.body.weight;
@@ -35,7 +35,7 @@ express()
         res.end(error);
       var results = {'rows': result.rows };
       console.log(results);
-    res.render('pages/users', results)
+    //res.render('pages/users', results)
     });
   })
 

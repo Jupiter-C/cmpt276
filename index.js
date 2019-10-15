@@ -27,15 +27,17 @@ express()
     var frozen = req.body.frozen;
     var total = req.body.total;
     var trainnername = req.body.trainnername;
+    pool.connect();
 
     var  insertUsersQuery = `INSERT INTO tokimon VALUES ('${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainnername}');`
     console.log(insertUsersQuery);
     pool.query(insertUserQuery, (error,result) => {
       if (error)
-        res.end(error);
-      var results = {'rows': result.rows };
-      console.log(results);
-    //res.render('pages/users', results)
+        throw error;
+      for (let row of res.rows) {
+        console.log(JSON.stringify(row));
+      }
+      client.end();
     });
   })
 

@@ -4,11 +4,12 @@ const pool = new Pool({
   ssl: true
 });
 
-pool.connect();
-
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
+
+
+pool.connect();
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -48,10 +49,7 @@ express()
     pool.query(insertUsersQuery, (error,result) => {
       if (error)
         throw error;
-      // for (let row of res.rows) {
-      //   console.log(JSON.stringify(row));
-      // });
-      pool.end();
+      res.render('pages/products');
     });
   })
 

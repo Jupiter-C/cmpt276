@@ -15,33 +15,40 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => {res.render('pages/index')})
-  .get('/db', async (req, res) => {
-    try {
-      const client = await pool.connect()
-      const result = await client.query('SELECT * FROM test_table');
-      const results = { 'results': (result) ? result.rows : null};
-      res.render('pages/db', results );
-      client.release();
-    } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
-    }
-  })
-  .get('/users', (req,res) => {
+
+  // .get('/db', async (req, res) => {
+  //   try {
+  //     const client = await pool.connect()
+  //     const result = await client.query('SELECT * FROM test_table');
+  //     const results = { 'results': (result) ? result.rows : null};
+  //     res.render('pages/db', results );
+  //     client.release();
+  //   } catch (err) {
+  //     console.error(err);
+  //     res.send("Error " + err);
+  //   }
+  // })
+
+  .get('/users',(req,res) => {
     var getUsersQuery = `SELECT * FROM tokimon`;
-    console.log(getUsersQuery);
-    pool.query(getUsersQuery, (error, result) => {
-      if (error)
+    pool.query(getUserQuery, (error,result) => {
+      if(error)
         res.end(error);
-      var results = {'rows': result.rows };
-      console.log(results);
-      res.render('pages/users', results)
+      var results = {'rows': result.rows};
+      res.render('pages/users',results);
     });
   })
+  
   .get('/users/:id', (req,res) => {
-    console.log(req.params.id);
-    var userIDQuery = `SELECT * FROM tokimon WHERE uid=${req.params.id}`;
+    var userIDQuery = `SELECT * FROM tokimon WHERE id=${req.params.id}`;
+    pool.query(userIDQuery, (error,result) =>{
+      if(error)
+        res.end(error);
+      var results = {'rows': result.rows};
+      res.render('pages/details',results);
+    });
   })
+
   .post('/create', (req, res) => {
     var id = req.body.id;
     var name = req.body.name;
@@ -60,10 +67,10 @@ express()
     console.log(insertUsersQuery);
     pool.query(insertUsersQuery, (error,result) => {
       if (error)
-        throw error;
+        res.end(error);
       var results = {'rows': result.rows };
       console.log(results);
-      res.render('pages/products', results);
+      res.render('pages/users');
     });
   })
 

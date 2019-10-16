@@ -35,7 +35,7 @@ express()
         res.end(error);
       var results = {'rows': result.rows };
       console.log(results);
-      res.render('pages/users', results)
+      res.render('pages/users', results);
     });
   })
   .get('/users/:id', (req,res) => {
@@ -61,7 +61,7 @@ express()
     pool.query(insertUsersQuery, (error,result) => {
       if (error)
         res.end(error);
-      res.render('pages/users', results);
+      res.render('pages/users');
     });
   })
 

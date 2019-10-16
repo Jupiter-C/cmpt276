@@ -14,7 +14,7 @@ express()
   .use(express.urlencoded({ extended: false }))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
-  .get('/', (req, res) => {res.redirect('/tokimon')})
+  .get('/', (req, res) => {res.render('pages/index')})
   .get('/db', async (req, res) => {
     try {
       const client = await pool.connect()
@@ -60,9 +60,7 @@ express()
     console.log(insertUsersQuery);
     pool.query(insertUsersQuery, (error,result) => {
       if (error)
-        throw error;
-      var results = {'rows': result.rows };
-      console.log(results);
+        res.end(error);
       res.render('pages/users', results);
     });
   })

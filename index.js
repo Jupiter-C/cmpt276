@@ -47,9 +47,9 @@ express()
       if (error)
         throw error;
       var results = {'rows': result.rows };
+      console.log(results);
       res.render('pages/products',results);
     });
-    res.render('pages/products');
   })
 
   // .post('/change',(req,res) => {

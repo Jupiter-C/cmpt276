@@ -5,9 +5,21 @@
     <title>PRODUCTS</title>
   </head>
   <body>
+    <p>create tokimon</p>
     <ul>
         <% rows.forEach((r) => { %> 
             <li><%= r.id %></li>
+            <li><%= r.name %></li>
+            <li><%= r.weight %></li>
+            <li><%= r.height %></li>
+            <li><%= r.fly %></li>
+            <li><%= r.fight %></li>
+            <li><%= r.fire %></li>
+            <li><%= r.water %></li>
+            <li><%= r.electric %></li>
+            <li><%= r.frozen %></li>
+            <li><%= r.total %></li>
+            <li><%= r.trainer %></li>
         <% }); %>
     </ul>
   </body>

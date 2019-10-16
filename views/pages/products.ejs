@@ -2,14 +2,12 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>PRODUCTS</title>
   </head>
   <body>
-    <div class="container">
-    <h2>Database Results</h2>
     <ul>
-        <% rows.forEach(function(r) { %>
-            <li><%= r.id %> - <%= r.name %> - <%= r.weiight %> - <%= r.height %> - <%= r.fly %> - <%= r.fight %> - <%= r.fire %> - <%= r.water %> - <%= r.electric %> - <%= r.frozen %> - <%= r.total %> - <%= r.trainer %></li>
+        <% rows.forEach((r) => { %> 
+            <li><%= r.id %></li>
         <% }); %>
     </ul>
   </body>

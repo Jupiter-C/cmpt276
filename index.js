@@ -52,8 +52,8 @@ express()
     res.render('pages/products');
   })
 
-  .post('/change',(req,res) => {
-    
-  })
+  // .post('/change',(req,res) => {
+
+  // })
 
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))

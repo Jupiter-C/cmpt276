@@ -8,9 +8,6 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 
-
-pool.connect();
-
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .use(express.json())
@@ -46,12 +43,12 @@ express()
 
     var insertUsersQuery = `INSERT INTO tokimon VALUES (${id},'${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainer}')`;
     console.log(insertUsersQuery);
-    /*pool.query(insertUsersQuery, (error,result) => {
+    pool.query(insertUsersQuery, (error,result) => {
       if (error)
         throw error;
       var results = {'rows': result.rows };
       res.render('pages/products',results);
-    });*/
+    });
     res.render('pages/products');
   })
 

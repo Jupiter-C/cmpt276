@@ -16,6 +16,20 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => {res.render('pages/index')})
 
+  .get('/display', (req, res) => {
+    try {
+      const client = await pool.connect()
+      const result = await client.query('SELECT * FROM tokimon');
+      const results = { 'results': (result) ? result.rows : null};
+      console.log(results);
+      res.render('pages/display', results );
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  })
+
   // .get('/db', async (req, res) => {
   //   try {
   //     const client = await pool.connect()
@@ -29,25 +43,25 @@ express()
   //   }
   // })
 
-  .get('/users',(req,res) => {
-    var getUsersQuery = `SELECT * FROM tokimon`;
-    pool.query(getUserQuery, (error,result) => {
-      if(error)
-        res.end(error);
-      var results = {'rows': result.rows};
-      res.render('pages/users',results);
-    });
-  })
+  // .get('/users',(req,res) => {
+  //   var getUsersQuery = `SELECT * FROM tokimon`;
+  //   pool.query(getUsersQuery, (error,result) => {
+  //     if(error)
+  //       res.end(error);
+  //     var results = {'rows': result.rows};
+  //     res.render('pages/users',results);
+  //   });
+  // })
   
-  .get('/users/:id', (req,res) => {
-    var userIDQuery = `SELECT * FROM tokimon WHERE id=${req.params.id}`;
-    pool.query(userIDQuery, (error,result) =>{
-      if(error)
-        res.end(error);
-      var results = {'rows': result.rows};
-      res.render('pages/details',results);
-    });
-  })
+  // .get('/users/:id', (req,res) => {
+  //   var userIDQuery = `SELECT * FROM tokimon WHERE id=${req.params.id}`;
+  //   pool.query(userIDQuery, (error,result) =>{
+  //     if(error)
+  //       res.end(error);
+  //     var results = {'rows': result.rows};
+  //     res.render('pages/details',results);
+  //   });
+  // })
 
   .post('/create', async (req, res) => {
     try {
@@ -68,7 +82,8 @@ express()
       var insertUsersQuery = `INSERT INTO tokimon VALUES (${id},'${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainer}')`;
       const result = await client.query(insertUsersQuery);
       const results = { 'results': (result) ? result.rows : null};
-      res.render('pages/users', results );
+      console.log(results);
+      res.render('pages/create', results );
       client.release();
     } catch (err) {
         console.error(err);
@@ -94,7 +109,8 @@ express()
       var changeUsersQuery = `UPDATE tokimon SET name = '${name}', weight = ${weight}, height = ${height}, fly = ${fly}, fight = ${fight}, fire = ${fire}, water = ${water}, electric = ${electric}, frozen = ${frozen}, total = ${total}, trainer = '${trainer}' WHERE id = ${id};`;
       const result = await client.query(changeUsersQuery);
       const results = { 'results': (result) ? result.rows : null};
-      res.render('pages/users', results );
+      console.log(results);
+      res.render('pages/change', results );
       client.release();
     } catch (err) {
       console.error(err);
@@ -109,7 +125,8 @@ express()
       var deleteUsersQuery = `DELETE FROM tokimon WHERE id = ${id};`;
       const result = await client.query(deleteUsersQuery);
       const results = { 'results': (result) ? result.rows : null};
-      res.render('pages/users', results );
+      console.log(results);
+      res.render('pages/delete', results );
       client.release();
     } catch (err) {
       console.error(err);

@@ -97,7 +97,12 @@ tr:nth-child(even) {
 
 
 
-form {
+form.btn {
+	width: 50%;
+	float: right;
+}
+
+form.modal-content {
   border: 2px solid #6BB099;
   background-color: white;
   padding: 100px;

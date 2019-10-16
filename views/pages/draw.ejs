@@ -38,6 +38,27 @@
                 background-color: #CADADD;
                 text-align: center;
             }
+
+            button {
+                background-color: white;
+                border: none;
+                color: #CADADD;;
+                border-radius: 5px;
+                text-align: center;
+                display: inline-block;
+                font-size: 25px;
+                margin: 30px;
+                padding: 5px 15px;
+                bottom: 0;
+                -webkit-transition-duration: 0.4s;
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #CADADD;
+                color: white;
+            }
         </style>
     </head>
     <body>
@@ -50,5 +71,6 @@
             </div>
         <% }); %>
       </div>
+      <a href="/display"><button>Back</button></a>
     </body>
 </html>

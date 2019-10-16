@@ -52,6 +52,4 @@ express()
     res.render('pages/products');
   })
 
-
-
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))

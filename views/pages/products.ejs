@@ -21,6 +21,22 @@
             <th>total</th>
             <th>trainner name</th>
         </tr>
+        <% rows.forEach((r) => { %>
+            <tr>
+                <td><%= r.id %></td>
+                <td><%= r.name %></td>
+                <td><%= r.weight %></td>
+                <td><%= r.height %></td>
+                <td><%= r.fly %></td>
+                <td><%= r.fight %></td>
+                <td><%= r.fire %></td>
+                <td><%= r.water %></td>
+                <td><%= r.electric %></td>
+                <td><%= r.frozen %></td>
+                <td><%= r.total %></td>
+                <td><%= r.trainer %></td>
+            </tr>
+        <% }); %>
     </table>
   </body>
 </html>

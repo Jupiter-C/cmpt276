@@ -49,7 +49,7 @@ express()
     });
   })
 
-  .post('/create', (req, res) => {
+  .post('/create', async (req, res) => {
     try {
       const client = await pool.connect()
       var id = req.body.id;
@@ -70,13 +70,50 @@ express()
       const results = { 'results': (result) ? result.rows : null};
       res.render('pages/users', results );
       client.release();
-    }catch (err) {
+    } catch (err) {
         console.error(err);
     }
   })
 
-  // .post('/change',(req,res) => {
+  .post('/change', async (req, res) => {
+    try{
+      const client = await pool.connect()
+      const id = req.body.id;
+      var name = req.body.name;
+      var weight = req.body.weight;
+      var height = req.body.height;
+      var fly = req.body.fly;
+      var fight = req.body.fight;
+      var fire = req.body.fire;
+      var water = req.body.water;
+      var electric = req.body.electric;
+      var frozen = req.body.frozen;
+      var total = req.body.total;
+      var trainer = req.body.trainer;
 
-  // })
+      var changeUsersQuery = `UPDATE tokimon SET name = '${name}', weight = ${weight}, height = ${height}, fly = ${fly}, fight = ${fight}, fire = ${fire}, water = ${water}, electric = ${electric}, frozen = ${frozen}, total = ${total}, trainer = '${trainer}' WHERE id = ${id};`;
+      const result = await client.query(changeUsersQuery);
+      const results = { 'results': (result) ? result.rows : null};
+      res.render('pages/users', results );
+      client.release();
+    } catch (err) {
+      console.error(err);
+    }
+  })
+
+  .post('/delete', async (req, res) => {
+    try{
+      const client = await pool.connect()
+      const id = req.body.id;
+
+      var deleteUsersQuery = `DELETE FROM tokimon WHERE id = ${id};`;
+      const result = await client.query(deleteUsersQuery);
+      const results = { 'results': (result) ? result.rows : null};
+      res.render('pages/users', results );
+      client.release();
+    } catch (err) {
+      console.error(err);
+    }
+  })
 
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))

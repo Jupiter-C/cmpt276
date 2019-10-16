@@ -50,28 +50,29 @@ express()
   })
 
   .post('/create', (req, res) => {
-    var id = req.body.id;
-    var name = req.body.name;
-    var weight = req.body.weight;
-    var height = req.body.height;
-    var fly = req.body.fly;
-    var fight = req.body.fight;
-    var fire = req.body.fire;
-    var water = req.body.water;
-    var electric = req.body.electric;
-    var frozen = req.body.frozen;
-    var total = req.body.total;
-    var trainer = req.body.trainer;
+    try {
+      const client = await pool.connect()
+      var id = req.body.id;
+      var name = req.body.name;
+      var weight = req.body.weight;
+      var height = req.body.height;
+      var fly = req.body.fly;
+      var fight = req.body.fight;
+      var fire = req.body.fire;
+      var water = req.body.water;
+      var electric = req.body.electric;
+      var frozen = req.body.frozen;
+      var total = req.body.total;
+      var trainer = req.body.trainer;
 
-    var insertUsersQuery = `INSERT INTO tokimon VALUES (${id},'${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainer}')`;
-    console.log(insertUsersQuery);
-    pool.query(insertUsersQuery, (error,result) => {
-      if (error)
-        res.end(error);
-      var results = {'rows': result.rows };
-      console.log(results);
-      res.render('pages/users');
-    });
+      var insertUsersQuery = `INSERT INTO tokimon VALUES (${id},'${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainer}')`;
+      const result = await client.query(insertUsersQuery);
+      const results = { 'results': (result) ? result.rows : null};
+      res.render('pages/users', results );
+      client.release();
+    }catch (err) {
+        console.error(err);
+    }
   })
 
   // .post('/change',(req,res) => {

@@ -49,7 +49,8 @@ express()
     pool.query(insertUsersQuery, (error,result) => {
       if (error)
         throw error;
-      res.render('pages/products');
+      var results = {'rows': result.rows };
+      res.render('pages/products',results);
     });
   })
 

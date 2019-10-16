@@ -14,7 +14,7 @@ express()
   .use(express.urlencoded({ extended: false }))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
-  .get('/', (req, res) => {res.render('pages/index')})
+  .get('/', (req, res) => {res.redirect('/tokimon')})
   .get('/db', async (req, res) => {
     try {
       const client = await pool.connect()
@@ -26,6 +26,21 @@ express()
       console.error(err);
       res.send("Error " + err);
     }
+  })
+  .get('/users', (req,res) => {
+    var getUsersQuery = `SELECT * FROM tokimon`;
+    console.log(getUsersQuery);
+    pool.query(getUsersQuery, (error, result) => {
+      if (error)
+        res.end(error);
+      var results = {'rows': result.rows };
+      console.log(results);
+      res.render('pages/users', results)
+    });
+  })
+  .get('/users/:id', (req,res) => {
+    console.log(req.params.id);
+    var userIDQuery = `SELECT * FROM tokimon WHERE uid=${req.params.id}`;
   })
   .post('/create', (req, res) => {
     var id = req.body.id;
@@ -41,14 +56,14 @@ express()
     var total = req.body.total;
     var trainer = req.body.trainer;
 
-    var insertUsersQuery = `INSERT INTO tokimon(id, name, weight, height, fly, fight, fire, water, electric, frozen, total, trainer) VALUES (${id},'${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainer}')`;
+    var insertUsersQuery = `INSERT INTO tokimon VALUES (${id},'${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainer}')`;
     console.log(insertUsersQuery);
     pool.query(insertUsersQuery, (error,result) => {
       if (error)
         throw error;
       var results = {'rows': result.rows };
       console.log(results);
-      res.render('pages/products', results);
+      res.render('pages/users', results);
     });
   })
 

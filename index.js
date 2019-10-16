@@ -16,7 +16,7 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => {res.render('pages/index')})
 
-  .get('/display', (req, res) => {
+  .get('/display', async (req, res) => {
     try {
       const client = await pool.connect()
       const result = await client.query('SELECT * FROM tokimon');

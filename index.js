@@ -44,14 +44,15 @@ express()
     var total = req.body.total;
     var trainer = req.body.trainer;
 
-    var insertUsersQuery = `INSERT INTO tokimon VALUES (${id},'${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainer}')`;
+    /*var insertUsersQuery = `INSERT INTO tokimon VALUES (${id},'${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainer}')`;
     console.log(insertUsersQuery);
     pool.query(insertUsersQuery, (error,result) => {
       if (error)
         throw error;
       var results = {'rows': result.rows };
       res.render('pages/products',results);
-    });
+    });*/
+    res.render('pages/products');
   })
 
 

@@ -6,6 +6,7 @@
     <style>
         body {
             width: 98%;
+            border: 1px solid #6BB099;
         }
 
         table, th, td {
@@ -33,10 +34,41 @@
         tr:nth-child(even) {
             background-color: #CADADD;
         }
+
+        button {
+            background-color: white;
+            border: none;
+            color: #CADADD;;
+            border-radius: 5px;
+            text-align: center;
+            display: inline-block;
+            font-size: 25px;
+            margin: 30px;
+            padding: 5px 15px;
+            bottom: 0;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #CADADD;
+            color: white;
+        }
+
+        button.draw {
+            float: right;
+            margin: 30px;
+        }
+
+        form {
+            width: 30%;
+            float: right;
+        }
     </style>
   </head>
   <body>
-      <table>
+    <table>
         <tr>
             <th>id</th>
             <th>name</th>
@@ -52,21 +84,25 @@
             <th>trainner name</th>
         </tr>
         <% results.forEach(function(r) { %>
-            <tr>
-                <td><%= r.id %></td>
-                <td><%= r.name %></td>
-                <td><%= r.weight %></td>
-                <td><%= r.height %></td>
-                <td><%= r.fly %></td>
-                <td><%= r.fight %></td>
-                <td><%= r.fire %></td>
-                <td><%= r.water %></td>
-                <td><%= r.electric %></td>
-                <td><%= r.frozen %></td>
-                <td><%= r.total %></td>
-                <td><%= r.trainer %></td>
-            </tr>
+        <tr>
+            <td><%= r.id %></td>
+            <td><%= r.name %></td>
+            <td><%= r.weight %></td>
+            <td><%= r.height %></td>
+            <td><%= r.fly %></td>
+            <td><%= r.fight %></td>
+            <td><%= r.fire %></td>
+            <td><%= r.water %></td>
+            <td><%= r.electric %></td>
+            <td><%= r.frozen %></td>
+            <td><%= r.total %></td>
+            <td><%= r.trainer %></td>
+        </tr>
         <% }); %>
-      </table>
+    </table>
+    <a href="products.html"><button>Back</button></a>
+    <form class="btn" method="GET" action="/draw">
+        <button class="draw">Draw</button>
+    </form>
   </body>
 </html>

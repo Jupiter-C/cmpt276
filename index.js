@@ -30,6 +30,20 @@ express()
     }
   })
 
+  .get('/draw', async (req, res) => {
+    try {
+      const client = await pool.connect()
+      const result = await client.query('SELECT * FROM tokimon');
+      const results = { 'results': (result) ? result.rows : null};
+      console.log(results);
+      res.render('pages/draw', results );
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  })
+
   // .get('/db', async (req, res) => {
   //   try {
   //     const client = await pool.connect()
@@ -93,7 +107,7 @@ express()
   .post('/change', async (req, res) => {
     try{
       const client = await pool.connect()
-      const id = req.body.id;
+      var id = req.body.id;
       var name = req.body.name;
       var weight = req.body.weight;
       var height = req.body.height;

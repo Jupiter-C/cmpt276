@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>DRAW</title>
+        <style>
+            h1 {
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                color: #6BB099;
+                text-align: center;
+            }
+
+            p {
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                color: #6BB099;
+                text-align: center;
+            }
+
+            body {
+                text-align: center;
+                padding: 30px;
+            }
+
+            div.one {
+                margin: 0 auto;
+                text-align: center;
+                padding: 30px;
+            }
+
+            div.two {
+                margin: 10px;
+                text-align: center;
+                display: inline-block;
+            }
+
+            canvas {
+                border: 3px solid #6BB099;
+                background-color: #CADADD;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Lets draw it!!!!!</h1>
+        <div class="one">
+        <% results.forEach(function(r) { %>
+            <div class="two">
+                <canvas width="<%= 5*r.weight %>" height="<%= 5*r.height %>"></canvas>
+                <p><%= r.name %></p>
+            </div>
+        <% }); %>
+      </div>
+    </body>
+</html>

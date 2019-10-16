@@ -3,13 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>PRODUCTS</title>
-    <% include ../partials/header.ejs %>
   </head>
   <body>
-    <% include ../partials/nav.ejs %>
     <p>create tokimon</p>
     <ul>
-        <% rows.forEach((r) => { %> 
+        <% results.forEach((r) => { %> 
             <li><%= r.id %></li>
             <li><%= r.name %></li>
             <li><%= r.weight %></li>
